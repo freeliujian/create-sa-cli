@@ -1,0 +1,59 @@
+{
+  "name": "create-sa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "typings": "dist/types/index.d.ts",
+  "engines": {
+    "node": " 20.12.2"
+  },
+  "bin": {
+    "create-sa": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [],
+  "author": "jian.liu",
+  "license": "ISC",
+  "dependencies": {
+    "base-handlebars-generator": "1.0.92",
+    "chalk": "^4.0.0",
+    "clipboardy": "^2.3.0",
+    "commander": "^7.2.0",
+    "debug": "^4.3.5",
+    "fs-extra": "11.2.0",
+    "glob": "10.3.15",
+    "handlebars": "4.7.8",
+    "inquirer": "^6.4.1",
+    "mkdirp": "^3.0.1",
+    "prompts": "2.4.2",
+    "scaffold-tool": "^1.0.82",
+    "semver": "^7.6.2",
+    "yargs-parser": "21.1.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "7.24.1",
+    "@babel/preset-env": "7.24.5",
+    "@babel/preset-flow": "7.24.1",
+    "@babel/preset-typescript": "7.24.1",
+    "@types/chalk": "2.2.0",
+    "@types/fs-extra": "11.0.4",
+    "@types/glob": "8.1.0",
+    "@types/gulp": "4.0.17",
+    "@types/gulp-babel": "6.1.33",
+    "@types/gulp-typescript": "2.13.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/mkdirp": "^2.0.0",
+    "@types/prompts": "2.4.9",
+    "@types/through2": "2.0.41",
+    "@types/yargs-parser": "21.0.3",
+    "gulp": "5.0.0",
+    "gulp-babel": "8.0.0",
+    "gulp-if": "3.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "through2": "4.0.2"
+  }
+}
