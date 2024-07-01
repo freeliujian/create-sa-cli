@@ -73,25 +73,24 @@ module.exports = class Generator extends BasicGenerator {
 
   async afterWriting() {
     console.log('git init...');
-    const { cd } = until;
-    const folderPath = resolve(this.baseDir, this.props.moduleName);
-    cd(folderPath);
     // await $`git init`;
     // await $`git add .`;
     // await $`git commit -m "Initial commit"`;
     // await $`git remote add origin ${this.prompts.repository}`;
     // await $`git push -u origin master`;
-  }
-
-  async end() {
-    const { $ } = until;
+    const { $, cd } = until;
     try {
+      const folderPath = resolve(this.baseDir, this.props.moduleName);
+      cd(folderPath);
       await $`npm install`.then(res => {
         console.log(res.stderr,res.stdout);
       })
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async end() {
   }
 }
 

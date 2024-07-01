@@ -65,7 +65,6 @@ const runGenerator = async (generatorPath: string, { name = '', cwd = process.cw
   }); 
 
   await generator.run();
-  // rmdirSync(SADir);
   if (name) {
     if (process.platform !== 'linux' || process.env.DISPLAY) {
       clipboardy.writeSync(`cd ${name}`);
