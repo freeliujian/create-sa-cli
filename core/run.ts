@@ -5,7 +5,6 @@ import inquirer from 'inquirer';
 import clipboardy from 'clipboardy';
 import os from 'node:os';
 import { resolve, join } from 'path';
-import { rmdirSync } from 'fs-extra';
 import scaffold from 'scaffold-tool';
 
 const { CreateScaffold, $ } = scaffold;

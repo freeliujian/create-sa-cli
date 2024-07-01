@@ -91,6 +91,8 @@ module.exports = class Generator extends BasicGenerator {
   }
 
   async end() {
+    const { rmDirRecursiveSync } = until;
+    rmDirRecursiveSync(this.templatePath());
   }
 }
 
