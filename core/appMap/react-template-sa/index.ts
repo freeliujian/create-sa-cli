@@ -54,7 +54,7 @@ module.exports = class Generator extends BasicGenerator {
 
   prompting() {
     return this.props.prompts;
-  }
+  }  
 
   beforeWriting() {
     const { repository } = this.prompts;
