@@ -7,7 +7,7 @@ import os from 'node:os';
 import { resolve, join } from 'path';
 import scaffold from 'scaffold-tool';
 
-const { CreateScaffold, $ } = scaffold;
+const { CreateScaffold, rmDirRecursiveSync } = scaffold;
 
 const cliPath = resolve(__dirname, '../../');
 const userRootDir = os.homedir();
@@ -83,8 +83,10 @@ const run = async (config: any): Promise<void> => {
   (process as any).emit('message', { type: 'prompt' });
 
   const opt = {
-    gitUser: 'freeliujian' || config.name,
+    gitUser: config.name || 'freeliujian',
   };
+  
+  rmDirRecursiveSync(SADir);
 
   const BI = new CreateScaffold(opt);
   const meta = await BI.getUserRepoList();

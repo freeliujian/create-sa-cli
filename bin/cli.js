@@ -5,10 +5,9 @@ const semver = require('semver');
 const yParser = require('yargs-parser');
 const run = require('../dist/cjs/run').default;
 
+program.version(require('../package.json').version);
 
-program
-.version(require('../package.json').version)
-.parse(process.argv);
+program.parse(process.argv);
 
 if (!semver.satisfies(process.version, '>= 8.0.0')) {
     console.error(chalk.red("node 版本至少要大于8.0.0!"));

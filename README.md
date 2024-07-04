@@ -3,10 +3,26 @@
 一个可复用的脚手架工具
 
 # 使用
-
+在自己的仓库里面必须创建后缀为`-sa`的模板文件
+然后在
+```
+create-sa gitUserName
+```
+或者直接在run.ts里面直接改
+示例：
+```js
+  const opt = {
+    gitUser: 'freeliujian' || config.name,
+  };
+```
+输入
 ```
 create-sa
 ```
+## 扩展
+在appMap中添加跟仓库名称一样的Map文件夹
+例如：
+远程仓库名称为：xxx-sa. 在`appMap`中也需要创建一个名为`xxx-sa`的文件夹，并里面有`index.ts` 和`meta.ts`两个文件.
 
 ## base-handlebars-generator
 
