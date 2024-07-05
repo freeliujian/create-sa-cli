@@ -5,6 +5,10 @@ import { resolve, sep, dirname, join } from 'path';
 import fsExtra from 'fs-extra';
 import chalk from 'chalk';
 const debug = require('debug')('create-sa:BasicGenerator');
+import * as until from 'scaffold-tool';
+
+const { constants } = until.default;
+const { DEFAULT_END_NAME, RAGEX_END_FILE } = constants;
 
 function noop() {
   return true;
@@ -37,20 +41,6 @@ export class BasicGenerator extends Generator {
     this.opts = {baseDir, name, type, args, slient};
     this.branch = this.opts?.args?.branch || 'master';
 
-    this.helper({
-      name: 'includes',
-      fn: (context: any, item: any, options:any) => {
-        if (context) {
-          if (context.includes(item)) {
-            return options.fn(this);
-          } else {
-            return options.inverse(this);
-          }
-        } else {
-          return " ";
-        }
-      },
-    });
   }
 
   async writeFiles(params: { context: IContext; filterFiles?: (() => boolean) | undefined; }) {
@@ -59,7 +49,6 @@ export class BasicGenerator extends Generator {
     debug(`context: ${JSON.stringify(params.context)}`);
     const cwd = resolve(this.templatePath(), `${type}`).split(sep).join('/');
     const directoryPath = resolve(this.opts.baseDir,  context.moduleName);
-
     globSync('**/*', {
         cwd,
         dot: true,
@@ -71,8 +60,8 @@ export class BasicGenerator extends Generator {
         const filePath = resolve(cwd, file);
         if (statSync(filePath).isFile() && file !== '.DS_Store') {
           const data = {
-            ...context.prompts,
-            name: context.name,
+            ...context,
+            packageName: context.packageName,
           }
           if (statSync(filePath).isDirectory()) {
             this.copyDirectory({
@@ -81,11 +70,11 @@ export class BasicGenerator extends Generator {
               target:directoryPath,
             });
           } else {
-            if (filePath.endsWith('.sa')) {
-              this.copyTpl({
+            if (filePath.endsWith(`${DEFAULT_END_NAME}`)) {
+              this.copyTpl({                
                 templatePath: filePath,
-                target:join(directoryPath, file.replace(/\.sa$/, '')),
-                data,
+                target:join(directoryPath, file.replace(RAGEX_END_FILE, '')),
+                context: data,
               });
             } else {
               const absTarget = resolve(directoryPath, file);

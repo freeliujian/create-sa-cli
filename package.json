@@ -1,6 +1,6 @@
 {
-  "name": "create-sa",
-  "version": "1.0.0",
+  "name": "create-new-sa",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -9,7 +9,7 @@
     "node": " 20.12.2"
   },
   "bin": {
-    "create-sa": "./bin/cli.js"
+    "create-new-sa": "./bin/cli.js"
   },
   "scripts": {
     "build": "gulp"
@@ -18,7 +18,7 @@
   "author": "jian.liu",
   "license": "ISC",
   "dependencies": {
-    "base-handlebars-generator": "1.0.92",
+    "base-handlebars-generator": "1.0.93",
     "chalk": "^4.0.0",
     "clipboardy": "^2.3.0",
     "commander": "^7.2.0",
@@ -29,7 +29,7 @@
     "inquirer": "^6.4.1",
     "mkdirp": "^3.0.1",
     "prompts": "2.4.2",
-    "scaffold-tool": "^1.0.82",
+    "scaffold-tool": "1.0.83",
     "semver": "^7.6.2",
     "yargs-parser": "21.1.1"
   },

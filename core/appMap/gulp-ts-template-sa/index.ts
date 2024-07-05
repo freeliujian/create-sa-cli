@@ -14,7 +14,6 @@ module.exports = class Generator extends BasicGenerator {
     const opt = {
       ...props,
       args: {
-        perfix: 'sa',
         branch: 'master',
         name: props.args.name,
         type: props.args.type,

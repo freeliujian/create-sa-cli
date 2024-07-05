@@ -38,7 +38,7 @@ module.exports = class Generator extends BasicGenerator {
         message: '请输入的你端口号:（默认:8000)'
       },
       {
-        type: 'multiselect',
+        type: 'checkbox',
         name: 'features', 
         message: '请选择你你要安装的模块',
         default: ["tailwind", "antd", "ahooks"],
@@ -50,6 +50,22 @@ module.exports = class Generator extends BasicGenerator {
       },
     ];
     this.props.prompts = questions;
+
+    this.helper({
+      name: 'includes',
+      fn: (context: any, item: any, options: any) => {
+        console.log(context, 'context');
+        if (context) {
+          if (context.includes(item)) {
+            return options.fn(this);
+          } else {
+            return options.inverse(this);
+          }
+        } else {
+          return " ";
+        }
+      },
+    });
   }
 
   prompting() {
@@ -59,38 +75,42 @@ module.exports = class Generator extends BasicGenerator {
   beforeWriting() {
     const { repository } = this.prompts;
     const { moduleName, packageName, name } = getNameByRepository(repository);
-    this.props.name = name;
-    this.props.moduleName = moduleName;
-    this.props.packageName = packageName;
+    this.prompts.name = name;
+    this.prompts.moduleName = moduleName;
+    this.prompts.packageName = packageName;
   }
   
   async writing() {
     const context = {
-      ...this.props
+      ...this.prompts
     };
+    console.log(context);
     await this.writeFiles({ context })
   }
 
   async afterWriting() {
     console.log('git init...');
+    // const { $ } = until;
     // await $`git init`;
     // await $`git add .`;
     // await $`git commit -m "Initial commit"`;
     // await $`git remote add origin ${this.prompts.repository}`;
     // await $`git push -u origin master`;
-    const { $, cd } = until;
-    try {
-      const folderPath = resolve(this.baseDir, this.props.moduleName);
-      cd(folderPath);
-      await $`npm install`.then(res => {
-        console.log(res.stderr,res.stdout);
-      })
-    } catch (err) {
-      console.log(err);
-    }
+  
   }
 
   async end() {
+    console.log('npm install...');
+    const { $, cd } = until;
+    // try {
+    //   const folderPath = resolve(this.baseDir, this.prompts.moduleName);
+    //   cd(folderPath);
+    //   await $`npm install`.then(res => {
+    //     console.log(res.stderr,res.stdout);
+    //   })
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 }
 

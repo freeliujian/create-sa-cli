@@ -7,11 +7,14 @@ import os from 'node:os';
 import { resolve, join } from 'path';
 import scaffold from 'scaffold-tool';
 
-const { CreateScaffold, rmDirRecursiveSync } = scaffold;
+
+const { CreateScaffold, rmDirRecursiveSync, constants } = scaffold;
+const { DEFAULT_END_NAME } = constants;
+
 
 const cliPath = resolve(__dirname, '../../');
 const userRootDir = os.homedir();
-const SADir = resolve(userRootDir, '.sa/.templates');
+const SADir = resolve(userRootDir, `${DEFAULT_END_NAME}/.templates`);
 
 interface GeneratorMeta {
   meta: {
