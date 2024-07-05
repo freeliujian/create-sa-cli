@@ -6,7 +6,7 @@
 在自己的仓库里面必须创建后缀为`-sa`的模板文件
 然后在
 ```
-create-sa gitUserName
+create-new-sa gitUserName
 ```
 或者直接在run.ts里面直接改
 示例：
@@ -17,7 +17,7 @@ create-sa gitUserName
 ```
 输入
 ```
-create-sa
+create-new-sa
 ```
 ## 扩展
 在appMap中添加跟仓库名称一样的Map文件夹
