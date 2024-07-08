@@ -9,8 +9,8 @@ program.version(require('../package.json').version);
 
 program.parse(process.argv);
 
-if (!semver.satisfies(process.version, '>= 8.0.0')) {
-    console.error(chalk.red("node 版本至少要大于8.0.0!"));
+if (!semver.satisfies(process.version, '>= 20.12.2')) {
+    console.error(chalk.red("node 版本至少要大于20.12.2!"));
     process.exit(1);
 }
 
@@ -28,5 +28,4 @@ delete args.type;
     });
     process.exit(0);
 })();
-
 
