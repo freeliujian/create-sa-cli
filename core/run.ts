@@ -89,8 +89,11 @@ const run = async (config: any): Promise<void> => {
     gitUser: config.name || 'freeliujian',
   };
   
-  rmDirRecursiveSync(SADir);
-
+  if (fs.existsSync(SADir)) {
+    rmDirRecursiveSync(SADir);
+  } else {
+    console.log("not have templates folder");
+  }
   const BI = new CreateScaffold(opt);
   const meta = await BI.getUserRepoList();
   const metaUrl = meta.map((item:any) => {

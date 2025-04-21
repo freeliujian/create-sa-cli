@@ -1,8 +1,8 @@
 
 import { BasicGenerator } from '../../basicGenerator';
-import { default as until } from 'scaffold-tool';
+// import { default as until } from 'scaffold-tool';
 import { getNameByRepository } from '../getRepoName';
-import { resolve } from 'path';
+// import { resolve } from 'path';
 
 
 module.exports = class Generator extends BasicGenerator {
@@ -101,7 +101,7 @@ module.exports = class Generator extends BasicGenerator {
 
   async end() {
     console.log('npm install...');
-    const { $, cd } = until;
+    // const { $, cd } = until;
     // try {
     //   const folderPath = resolve(this.baseDir, this.prompts.moduleName);
     //   cd(folderPath);

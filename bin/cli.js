@@ -3,14 +3,15 @@
 const program = require('commander');
 const semver = require('semver');
 const yParser = require('yargs-parser');
+const chalk = require("chalk");
 const run = require('../dist/cjs/run').default;
-
+console.log(process.version);
 program.version(require('../package.json').version);
 
 program.parse(process.argv);
 
-if (!semver.satisfies(process.version, '>= 20.12.2')) {
-    console.error(chalk.red("node 版本至少要大于20.12.2!"));
+if (!semver.satisfies(process.version, '>= 18.20.2')) {
+    console.error(chalk.red("node 版本至少要大于18.20.2!"));
     process.exit(1);
 }
 
