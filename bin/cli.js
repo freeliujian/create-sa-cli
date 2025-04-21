@@ -5,8 +5,12 @@ const semver = require('semver');
 const yParser = require('yargs-parser');
 const chalk = require("chalk");
 const run = require('../dist/cjs/run').default;
-console.log(process.version);
-program.version(require('../package.json').version);
+
+program
+  .version(require('../package.json').version)
+  .arguments('<name>', 'name of the item')
+  .option('--type <type>', 'type of the item')
+  .allowUnknownOption(); 
 
 program.parse(process.argv);
 

@@ -51,7 +51,7 @@ const getGeneratorArray = () => fs
 });
 
 const runGenerator = async (generatorPath: string, { name = '', cwd = process.cwd(), args = {}, type= '' }: RunGeneratorOptions) => {
-  if (name) {
+  if (name && type) {
     mkdirpSync(name);
     cwd = join(cwd, name);
   }
@@ -61,20 +61,24 @@ const runGenerator = async (generatorPath: string, { name = '', cwd = process.cw
     args: {
       ...args,
       type,
+      name,
     },
     baseDir: resolve(cwd),
     path: SADir
   }); 
+  console.log({
+    ...args,
+    type,
+  })
+  // await generator.run();
+  // if (name) {
+  //   if (process.platform !== 'linux' || process.env.DISPLAY) {
+  //     clipboardy.writeSync(`cd ${name}`);
+  //     console.log('📋 Copied to clipboard, just use Ctrl+V');
+  //   }
 
-  await generator.run();
-  if (name) {
-    if (process.platform !== 'linux' || process.env.DISPLAY) {
-      clipboardy.writeSync(`cd ${name}`);
-      console.log('📋 Copied to clipboard, just use Ctrl+V');
-    }
-
-  }
-  console.log('✨ File Generate Done'); 
+  // }
+  // console.log('✨ File Generate Done'); 
 };
 
 
@@ -86,7 +90,7 @@ const run = async (config: any): Promise<void> => {
   (process as any).emit('message', { type: 'prompt' });
 
   const opt = {
-    gitUser: config.name || 'freeliujian',
+    gitUser: 'freeliujian',
   };
   
   if (fs.existsSync(SADir)) {
@@ -118,10 +122,10 @@ const run = async (config: any): Promise<void> => {
       },
     ]);
     config.type = answers.type;
-    generatorPath = resolve(cliPath, `./dist/cjs/appMap/${config.type}`);
   }
 
   try {
+    generatorPath = resolve(cliPath, `./dist/cjs/appMap/${config.type}`);
     await runGenerator(generatorPath, config);
   } catch (e) {
     console.error(chalk.red('> 模板创建失败'), e);
